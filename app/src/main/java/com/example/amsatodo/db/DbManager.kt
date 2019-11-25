@@ -4,6 +4,7 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import android.widget.Toast
 import com.example.amsatodo.model.Task
 
 class DbManager(context: Context) : SQLiteOpenHelper(context, DBNAME, null, DBVERSION) {
@@ -87,10 +88,11 @@ class DbManager(context: Context) : SQLiteOpenHelper(context, DBNAME, null, DBVE
     }
     fun getDetailsAboutTask(id:Int): Task {
         val db = readableDatabase
+
         val columns = arrayOf(IDCOLUMN, TITLECOLUMN, DESCRIPTIONCOLUMN, PRIORITYCOLUMN, STATUSCOLUMN,
                 DATECOLUMN)
         val cursor = db.query(TABLENAME,columns,"$IDCOLUMN = ?", arrayOf(id.toString()),null,null,null,null)
-
+        cursor.moveToFirst()
             val id = cursor.getInt(0)
             val title = cursor.getString(1)
             val description = cursor.getString(2)

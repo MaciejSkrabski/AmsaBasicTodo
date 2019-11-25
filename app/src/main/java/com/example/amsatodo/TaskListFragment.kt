@@ -43,6 +43,7 @@ class TaskListFragment : Fragment() {
         adapter = TaskAdapter(taskList, context!!)
         taskRecyclerView.layoutManager = linearLayoutManager
         taskRecyclerView.adapter = adapter
+        activity?.title = "List of tasks"
 
 
 

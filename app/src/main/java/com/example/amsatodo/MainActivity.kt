@@ -1,12 +1,12 @@
 package com.example.amsatodo
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
-import kotlinx.android.synthetic.main.activity_main.*
+import androidx.appcompat.app.AppCompatActivity
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -44,12 +44,23 @@ class MainActivity : AppCompatActivity() {
                     val bundle = Bundle()
                     bundle.putInt("id",id)
                     editFragment.arguments = bundle
-                    transaction.replace(R.id.fragment_container, editFragment)
+                    transaction.replace(R.id.fragment_container, editFragment).addToBackStack(null)
                 }
 
-            "show" -> transaction.replace(R.id.fragment_container, TaskListFragment())
+            "show" -> transaction.replace(
+                R.id.fragment_container,
+                TaskListFragment()
+            ).addToBackStack(null)
         }
         transaction.commit()
+    }
+
+    override fun onBackPressed() {
+        if (supportFragmentManager.backStackEntryCount == 1) {
+            finish()
+        } else {
+            super.onBackPressed()
+        }
     }
 
 }

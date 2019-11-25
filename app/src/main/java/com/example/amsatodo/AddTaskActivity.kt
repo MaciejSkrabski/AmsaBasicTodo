@@ -17,6 +17,7 @@ class AddTaskActivity : AppCompatActivity() {
         actionBar?.setDisplayShowHomeEnabled(true)
         actionBar?.setDisplayShowHomeEnabled(true)
         addTaskBtn.setOnClickListener { addTask() }
+        title = "Add task"
     }
     fun addTask(){
         val title = titleInput.text.toString()
