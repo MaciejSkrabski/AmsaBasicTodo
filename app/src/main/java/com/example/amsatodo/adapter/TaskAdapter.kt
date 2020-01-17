@@ -14,7 +14,7 @@ import com.example.amsatodo.model.Task
 import com.example.amsatodo.db.DbManager
 import kotlinx.android.synthetic.main.list_row.view.*
 
-class TaskAdapter(private var taskList: MutableList<Task>,
+class TaskAdapter(private var taskList: MutableList<Task>, // TaskAdapter tworzy obiekty o polach zdefiniowanych w TaskViewHolder
                   private val context: Context) :
         RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder {
@@ -24,7 +24,7 @@ class TaskAdapter(private var taskList: MutableList<Task>,
 
     override fun getItemCount(): Int = taskList.size
 
-    override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: TaskViewHolder, position: Int) { //sklejenie pól z ich danymi
         holder.titleContent.text = taskList[position].title
         holder.statusContent.text = taskList[position].status
         when (taskList[position].priority) {
@@ -51,7 +51,7 @@ class TaskAdapter(private var taskList: MutableList<Task>,
 
     }
 
-    class TaskViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
+    class TaskViewHolder(val view: View) : RecyclerView.ViewHolder(view) { // takie pola mają obiekty w RecyclerView
 
         val titleContent: TextView = view.titleContent
         val statusContent: TextView = view.statusContent
